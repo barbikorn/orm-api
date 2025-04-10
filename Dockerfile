@@ -5,9 +5,11 @@ RUN apt-get update && apt-get install -y \
     update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 1
 
 WORKDIR /app
-COPY ./app /app
+COPY . /app
 
 RUN pip install --upgrade pip
-RUN pip install -r requirements.txt --find-links https://flashinfer.ai/whl/cu121/torch2.1/flashinfer/
+RUN pip install -r requirements.txt
+RUN pip install runpod
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+# สำหรับ RunPod Serverless ไม่จำเป็นต้องเปิด uvicorn server
+CMD ["python", "-u", "handler.py"]
