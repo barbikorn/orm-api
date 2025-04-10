@@ -1,0 +1,5 @@
+fastapi
+uvicorn
+pillow
+torch==2.4.0
+git+https://github.com/allenai/olmocr.git
